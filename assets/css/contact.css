@@ -1,0 +1,94 @@
+html body {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://picsum.photos/1300/800?image=971');
+    background-size: cover;
+}
+
+
+/* Title */
+.navbar-brand {
+    background-color: #008080;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+
+/* unvisited link */
+a:link {
+    color: darkgrey;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: darkgrey;
+}
+
+/* mouse over link */
+a:hover {
+    color: teal;
+}
+
+/* selected link */
+a:active {
+    color: black;
+}
+
+
+/* Contact Form */
+
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+
+/* Style for footer */
+
+.hr2 {
+    max-width: 100%;
+    border-top: 3px solid #4aaaa5;
+    border-bottom: 3px solid#4aaaa5;
+    margin-bottom: 0px;
+    left: 0;
+
+}
+
+.footer {
+    width: 100%;
+    margin-top: 10px;
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+
+
+
+}

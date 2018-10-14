@@ -1,0 +1,61 @@
+html body {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://picsum.photos/1300/800?image=971');
+    background-size: cover;
+}
+
+
+/* Title */
+.navbar-brand {
+    background-color: #008080;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+
+
+/* unvisited link */
+a:link {
+    color: darkgrey;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: darkgrey;
+}
+
+/* mouse over link */
+a:hover {
+    color: teal;
+}
+
+/* selected link */
+a:active {
+    color: black;
+}
+
+
+
+/* Style for footer */
+
+.hr2 {
+    max-width: 100%;
+    border-top: 3px solid #4aaaa5;
+    border-bottom: 3px solid#4aaaa5;
+    margin-bottom: 0px;
+    left: 0;
+
+}
+
+.footer {
+    width: 100%;
+    margin-top: 10px;
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+
+
+
+}
