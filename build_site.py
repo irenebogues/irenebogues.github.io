@@ -19,7 +19,6 @@ ABOUT = (
 PROJECTS = [
     {
         "name": "Mingma Sherpa Landscaping",
-        "type": "Current project",
         "url": "https://www.mingmasherpalandscaping.com/",
         "image": "assets/project-mingma.png",
         "alt": "Screenshot of the Mingma Sherpa Landscaping website.",
@@ -27,7 +26,6 @@ PROJECTS = [
     },
     {
         "name": "Arkadiy Barber Shop",
-        "type": "Past project",
         "url": "https://arkadiybarbershop.com/",
         "image": "assets/project-arkadiy.png",
         "alt": "Screenshot of the Arkadiy Barber Shop website.",
@@ -35,7 +33,6 @@ PROJECTS = [
     },
     {
         "name": "LS Therapeutic Touch",
-        "type": "Current project",
         "url": "https://lstherapeutictouch.com/",
         "image": "assets/project-ls-therapeutic.png",
         "alt": "Screenshot of the LS Therapeutic Touch website.",
@@ -43,7 +40,6 @@ PROJECTS = [
     },
     {
         "name": "Gotham Life Coach",
-        "type": "Past project",
         "url": "https://gothamlifecoach.com/",
         "image": "assets/project-gotham.png",
         "alt": "Screenshot of the Gotham Life Coach website.",
@@ -51,7 +47,6 @@ PROJECTS = [
     },
     {
         "name": "Heat &amp; Stir",
-        "type": "Past project",
         "url": "https://heatandstir.com/",
         "image": "assets/project-heat-stir.png",
         "alt": "Screenshot of the Heat and Stir website.",
@@ -113,7 +108,6 @@ def build_projects():
         <a class="project-card" href="{project["url"]}" target="_blank" rel="noreferrer" aria-label="Visit {project["name"]}">
             <img src="{project["image"]}" alt="{project["alt"]}">
             <span class="project-overlay">
-                <span class="project-type">{project["type"]}</span>
                 <strong>{project["name"]}</strong>
             </span>
         </a>
@@ -244,10 +238,12 @@ def build_html():
                                 <p>Calendly: <a href="{CALENDLY_URL}">{CALENDLY_URL}</a></p>
                             </div>
                         </div>
-                        <div class="contact-note">
-                            <p class="eyebrow">Availability</p>
-                            <h3>Short, focused calls work best.</h3>
-                            <p>Share the idea, the goal, and what you want visitors or clients to do next. I will help turn that into a cleaner plan.</p>
+                        <div class="calendly-card">
+                            <p class="eyebrow">Book Time</p>
+                            <h3>Meeting with Irene</h3>
+                            <!-- Calendly inline widget begin -->
+                            <div class="calendly-inline-widget" data-url="{CALENDLY_URL}" style="min-width:320px;height:520px;"></div>
+                            <!-- Calendly inline widget end -->
                         </div>
                     </div>
                 </section>
@@ -256,6 +252,7 @@ def build_html():
             <footer>
                 <p>Made with Python by {NAME}.</p>
             </footer>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </body>
         </html>
         """
@@ -519,9 +516,8 @@ def build_css():
             inset: auto 0 0;
             z-index: 1;
             display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 18px;
+            align-items: flex-start;
+            justify-content: flex-end;
             padding: 22px;
             background: linear-gradient(180deg, rgba(38, 53, 31, 0), rgba(38, 53, 31, 0.9));
         }
@@ -529,19 +525,7 @@ def build_css():
         .project-overlay strong {
             font-size: 1.35rem;
             line-height: 1.15;
-            text-align: right;
-        }
-
-        .project-type {
-            width: fit-content;
-            padding: 4px 10px;
-            flex: 0 0 auto;
-            color: #26351f;
-            background: #ead2a1;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
+            text-align: left;
         }
 
         .photos {
@@ -642,9 +626,9 @@ def build_css():
 
         .contact-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+            grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
             gap: 36px;
-            align-items: stretch;
+            align-items: start;
         }
 
         .contact-copy p {
@@ -665,9 +649,9 @@ def build_css():
             background: #ffffff;
         }
 
-        .contact-note {
+        .calendly-card {
             min-width: 0;
-            padding: 28px;
+            padding: 18px;
             color: #17212b;
             background: #f8fbf2;
             border: 1px solid rgba(255, 255, 255, 0.28);
@@ -675,16 +659,19 @@ def build_css():
             box-shadow: 0 24px 80px rgba(23, 33, 43, 0.26);
         }
 
-        .contact-note .eyebrow {
+        .calendly-card .eyebrow {
             color: #596a3d;
         }
 
-        .contact-note h3 {
+        .calendly-card h3 {
             color: #26351f;
         }
 
-        .contact-note p:last-child {
-            margin-bottom: 0;
+        .calendly-inline-widget {
+            width: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            border-radius: 8px;
         }
 
         footer {
@@ -746,6 +733,11 @@ def build_css():
 
             .project-overlay strong {
                 text-align: left;
+            }
+
+            .calendly-inline-widget {
+                min-width: 0 !important;
+                height: 460px !important;
             }
 
             .photos-header {
