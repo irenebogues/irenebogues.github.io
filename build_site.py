@@ -67,19 +67,40 @@ LEARNING_GOALS = [
 
 PHOTOS = [
     {
-        "file": "assets/hero-workspace.png",
-        "alt": "A bright desk workspace with a laptop, notebook, plants, and coffee.",
-        "caption": "Workspace energy",
+        "file": "assets/instagram-latest-1.jpg",
+        "alt": "Recent Instagram post thumbnail showing a nighttime city crowd.",
+        "caption": "City night",
+        "url": "https://www.instagram.com/reel/DZbl_uRtk97/",
     },
     {
-        "file": "assets/learning-notes.png",
-        "alt": "A notebook with project notes beside a laptop and coffee mug.",
-        "caption": "Notes, ideas, next steps",
+        "file": "assets/instagram-latest-2.jpg",
+        "alt": "Recent Instagram post thumbnail showing a South Africa travel view.",
+        "caption": "South Africa travel",
+        "url": "https://www.instagram.com/reel/DZSNytZCVXK/",
     },
     {
-        "file": "assets/project-workspace.png",
-        "alt": "A laptop workspace showing an abstract project screen with plants and notebooks.",
-        "caption": "Project days",
+        "file": "assets/instagram-latest-3.jpg",
+        "alt": "Recent Instagram post thumbnail showing a scenic travel moment.",
+        "caption": "Traveler notes",
+        "url": "https://www.instagram.com/reel/DZM54P2iENM/",
+    },
+    {
+        "file": "assets/instagram-latest-4.jpg",
+        "alt": "Recent Instagram post thumbnail showing a safari scene.",
+        "caption": "Safari rules",
+        "url": "https://www.instagram.com/reel/DZFa2mbiEqt/",
+    },
+    {
+        "file": "assets/instagram-latest-5.jpg",
+        "alt": "Recent Instagram post thumbnail showing a South Africa safari adventure.",
+        "caption": "Epic safari",
+        "url": "https://www.instagram.com/reel/DZDkEI3CrXO/",
+    },
+    {
+        "file": "assets/instagram-latest-6.jpg",
+        "alt": "Recent Instagram post thumbnail showing wild elephants.",
+        "caption": "Elephant encounter",
+        "url": "https://www.instagram.com/p/DZDj3EileLS/",
     },
 ]
 
@@ -115,7 +136,7 @@ def build_photos():
 
     for photo in PHOTOS:
         html += f"""
-        <a class="photo-link" href="{INSTAGRAM_URL}" target="_blank" rel="noreferrer">
+        <a class="photo-link" href="{photo["url"]}" target="_blank" rel="noreferrer">
             <figure class="photo-card">
                 <img src="{photo["file"]}" alt="{photo["alt"]}">
                 <figcaption>{photo["caption"]}</figcaption>
@@ -189,8 +210,8 @@ def build_html():
                     <div class="photos-header">
                         <div>
                             <p class="eyebrow">Photos</p>
-                            <h2>Follow the visual diary.</h2>
-                            <p>For fresh photos, food moments, city details, and day-to-day project life, follow me on Instagram.</p>
+                            <h2>Recent from Instagram.</h2>
+                            <p>Fresh photos, travel moments, city details, and day-to-day project life from @ireneluvsrain.</p>
                         </div>
                         <a class="button instagram-button" href="{INSTAGRAM_URL}" target="_blank" rel="noreferrer">Open @ireneluvsrain</a>
                     </div>
@@ -214,7 +235,7 @@ def build_html():
                         <div class="contact-copy">
                             <p class="eyebrow">Contact</p>
                             <h2>Let's plan the next step.</h2>
-                            <p>Have a project, idea, or collaboration in mind? Pick a time below and we can talk through what you need, what is already working, and what should happen next.</p>
+                            <p>Have a project, idea, or collaboration in mind? Pick a time and we can talk through what you need, what is already working, and what should happen next.</p>
                             <a class="button primary contact-button" href="{CALENDLY_URL}" target="_blank" rel="noreferrer">Schedule a meeting</a>
                             <div class="contact-links">
                                 <p>GitHub: <a href="{GITHUB_URL}">{GITHUB_URL}</a></p>
@@ -223,12 +244,10 @@ def build_html():
                                 <p>Calendly: <a href="{CALENDLY_URL}">{CALENDLY_URL}</a></p>
                             </div>
                         </div>
-                        <div class="calendly-card">
-                            <p class="eyebrow">Book Time</p>
-                            <h3>Meeting with Irene</h3>
-                            <!-- Calendly inline widget begin -->
-                            <div class="calendly-inline-widget" data-url="{CALENDLY_URL}" style="min-width:320px;height:520px;"></div>
-                            <!-- Calendly inline widget end -->
+                        <div class="contact-note">
+                            <p class="eyebrow">Availability</p>
+                            <h3>Short, focused calls work best.</h3>
+                            <p>Share the idea, the goal, and what you want visitors or clients to do next. I will help turn that into a cleaner plan.</p>
                         </div>
                     </div>
                 </section>
@@ -237,7 +256,6 @@ def build_html():
             <footer>
                 <p>Made with Python by {NAME}.</p>
             </footer>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </body>
         </html>
         """
@@ -579,7 +597,7 @@ def build_css():
         .photo-card img {
             display: block;
             width: 100%;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
         }
 
@@ -624,9 +642,9 @@ def build_css():
 
         .contact-layout {
             display: grid;
-            grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
             gap: 36px;
-            align-items: start;
+            align-items: stretch;
         }
 
         .contact-copy p {
@@ -647,9 +665,9 @@ def build_css():
             background: #ffffff;
         }
 
-        .calendly-card {
+        .contact-note {
             min-width: 0;
-            padding: 18px;
+            padding: 28px;
             color: #17212b;
             background: #f8fbf2;
             border: 1px solid rgba(255, 255, 255, 0.28);
@@ -657,19 +675,16 @@ def build_css():
             box-shadow: 0 24px 80px rgba(23, 33, 43, 0.26);
         }
 
-        .calendly-card .eyebrow {
+        .contact-note .eyebrow {
             color: #596a3d;
         }
 
-        .calendly-card h3 {
+        .contact-note h3 {
             color: #26351f;
         }
 
-        .calendly-inline-widget {
-            width: 100%;
-            overflow: hidden;
-            background: #ffffff;
-            border-radius: 8px;
+        .contact-note p:last-child {
+            margin-bottom: 0;
         }
 
         footer {
@@ -731,11 +746,6 @@ def build_css():
 
             .project-overlay strong {
                 text-align: left;
-            }
-
-            .calendly-inline-widget {
-                min-width: 0 !important;
-                height: 460px !important;
             }
 
             .photos-header {
