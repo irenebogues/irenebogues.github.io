@@ -21,30 +21,40 @@ PROJECTS = [
         "name": "Mingma Sherpa Landscaping",
         "type": "Current project",
         "url": "https://www.mingmasherpalandscaping.com/",
+        "image": "assets/project-mingma.png",
+        "alt": "Screenshot of the Mingma Sherpa Landscaping website.",
         "description": "A service-focused website for landscaping work and customer inquiries.",
     },
     {
         "name": "Arkadiy Barber Shop",
         "type": "Past project",
         "url": "https://arkadiybarbershop.com/",
+        "image": "assets/project-arkadiy.png",
+        "alt": "Screenshot of the Arkadiy Barber Shop website.",
         "description": "A polished web presence for a local barber shop and its clients.",
     },
     {
         "name": "LS Therapeutic Touch",
         "type": "Current project",
         "url": "https://lstherapeutictouch.com/",
+        "image": "assets/project-ls-therapeutic.png",
+        "alt": "Screenshot of the LS Therapeutic Touch website.",
         "description": "A calm, wellness-centered website for therapeutic services.",
     },
     {
         "name": "Gotham Life Coach",
         "type": "Past project",
         "url": "https://gothamlifecoach.com/",
+        "image": "assets/project-gotham.png",
+        "alt": "Screenshot of the Gotham Life Coach website.",
         "description": "A coaching website built around trust, clarity, and client connection.",
     },
     {
         "name": "Heat &amp; Stir",
         "type": "Past project",
         "url": "https://heatandstir.com/",
+        "image": "assets/project-heat-stir.png",
+        "alt": "Screenshot of the Heat and Stir website.",
         "description": "A food and lifestyle project with a warm, memorable web presence.",
     },
 ]
@@ -79,12 +89,13 @@ def build_projects():
 
     for project in PROJECTS:
         html += f"""
-        <article class="project-card">
-            <p class="project-type">{project["type"]}</p>
-            <h3>{project["name"]}</h3>
-            <p>{project["description"]}</p>
-            <a class="project-link" href="{project["url"]}" target="_blank" rel="noreferrer">Visit project</a>
-        </article>
+        <a class="project-card" href="{project["url"]}" target="_blank" rel="noreferrer" aria-label="Visit {project["name"]}">
+            <img src="{project["image"]}" alt="{project["alt"]}">
+            <span class="project-overlay">
+                <span class="project-type">{project["type"]}</span>
+                <strong>{project["name"]}</strong>
+            </span>
+        </a>
         """
 
     return html
@@ -167,8 +178,7 @@ def build_html():
                 <section class="section" id="projects">
                     <div class="section-heading">
                         <p class="eyebrow">Projects</p>
-                        <h2>Past and current projects</h2>
-                        <p>Selected live sites and projects I have supported or continue to shape.</p>
+                        <h2>Here are a few things I've done recently</h2>
                     </div>
                     <div class="project-grid">
                         {build_projects()}
@@ -217,7 +227,7 @@ def build_html():
                             <p class="eyebrow">Book Time</p>
                             <h3>Meeting with Irene</h3>
                             <!-- Calendly inline widget begin -->
-                            <div class="calendly-inline-widget" data-url="{CALENDLY_URL}" style="min-width:320px;height:700px;"></div>
+                            <div class="calendly-inline-widget" data-url="{CALENDLY_URL}" style="min-width:320px;height:520px;"></div>
                             <!-- Calendly inline widget end -->
                         </div>
                     </div>
@@ -449,41 +459,71 @@ def build_css():
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 16px;
         }
 
         .project-card {
-            min-height: 240px;
-            display: flex;
-            flex-direction: column;
-            padding: 24px;
-            background: linear-gradient(180deg, #ffffff 0%, #f8fbf2 100%);
+            position: relative;
+            grid-column: span 3;
+            min-height: 340px;
+            display: block;
+            overflow: hidden;
+            color: #ffffff;
+            background: #26351f;
             border: 1px solid rgba(89, 106, 61, 0.18);
             border-radius: 8px;
             box-shadow: 0 18px 50px rgba(38, 53, 31, 0.09);
+            text-decoration: none;
+            isolation: isolate;
         }
 
-        .project-card p {
-            margin-bottom: 18px;
+        .project-card:first-child {
+            grid-column: span 6;
+            min-height: 430px;
+        }
+
+        .project-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: inherit;
+            object-fit: cover;
+            transition: transform 500ms ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: auto 0 0;
+            z-index: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 22px;
+            background: linear-gradient(180deg, rgba(38, 53, 31, 0), rgba(38, 53, 31, 0.9));
+        }
+
+        .project-overlay strong {
+            font-size: 1.35rem;
+            line-height: 1.15;
+            text-align: right;
         }
 
         .project-type {
             width: fit-content;
             padding: 4px 10px;
-            color: #4d331f;
+            flex: 0 0 auto;
+            color: #26351f;
             background: #ead2a1;
             border-radius: 999px;
             font-size: 0.78rem;
             font-weight: 700;
             text-transform: uppercase;
-        }
-
-        .project-link {
-            margin-top: auto;
-            color: #596a3d;
-            font-weight: 700;
-            text-decoration: none;
         }
 
         .photos {
@@ -672,9 +712,30 @@ def build_css():
 
             .two-column,
             .learning,
+            .project-grid,
             .photo-grid,
             .contact-layout {
                 grid-template-columns: 1fr;
+            }
+
+            .project-card,
+            .project-card:first-child {
+                grid-column: auto;
+                min-height: 280px;
+            }
+
+            .project-overlay {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .project-overlay strong {
+                text-align: left;
+            }
+
+            .calendly-inline-widget {
+                min-width: 0 !important;
+                height: 460px !important;
             }
 
             .photos-header {
