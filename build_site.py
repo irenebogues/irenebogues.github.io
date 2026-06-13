@@ -8,7 +8,7 @@ INTRO = "I help ideas become organized, polished, and ready to share."
 GITHUB_URL = "https://github.com/irenebogues"
 INSTAGRAM_URL = "https://www.instagram.com/ireneluvsrain/"
 LINKEDIN_URL = "https://www.linkedin.com/in/irenebogues/"
-CALENDLY_URL = "https://calendly.com/irenebogues/"
+CALENDLY_URL = "https://calendly.com/irenebogues/meeting-with-irene"
 
 ABOUT = (
     "I bring together operations, web projects, creative coordination, and a "
@@ -200,20 +200,34 @@ def build_html():
                 </section>
 
                 <section class="section contact" id="contact">
-                    <p class="eyebrow">Contact</p>
-                    <h2>Let's connect.</h2>
-                    <p>Have a project, idea, or collaboration in mind? Schedule a meeting and we can talk through the next step.</p>
-                    <a class="button primary contact-button" href="{CALENDLY_URL}" target="_blank" rel="noreferrer">Schedule a meeting</a>
-                    <p>GitHub: <a href="{GITHUB_URL}">{GITHUB_URL}</a></p>
-                    <p>Instagram: <a href="{INSTAGRAM_URL}">{INSTAGRAM_URL}</a></p>
-                    <p>LinkedIn: <a href="{LINKEDIN_URL}">{LINKEDIN_URL}</a></p>
-                    <p>Calendly: <a href="{CALENDLY_URL}">{CALENDLY_URL}</a></p>
+                    <div class="contact-layout">
+                        <div class="contact-copy">
+                            <p class="eyebrow">Contact</p>
+                            <h2>Let's plan the next step.</h2>
+                            <p>Have a project, idea, or collaboration in mind? Pick a time below and we can talk through what you need, what is already working, and what should happen next.</p>
+                            <a class="button primary contact-button" href="{CALENDLY_URL}" target="_blank" rel="noreferrer">Schedule a meeting</a>
+                            <div class="contact-links">
+                                <p>GitHub: <a href="{GITHUB_URL}">{GITHUB_URL}</a></p>
+                                <p>Instagram: <a href="{INSTAGRAM_URL}">{INSTAGRAM_URL}</a></p>
+                                <p>LinkedIn: <a href="{LINKEDIN_URL}">{LINKEDIN_URL}</a></p>
+                                <p>Calendly: <a href="{CALENDLY_URL}">{CALENDLY_URL}</a></p>
+                            </div>
+                        </div>
+                        <div class="calendly-card">
+                            <p class="eyebrow">Book Time</p>
+                            <h3>Meeting with Irene</h3>
+                            <!-- Calendly inline widget begin -->
+                            <div class="calendly-inline-widget" data-url="{CALENDLY_URL}" style="min-width:320px;height:700px;"></div>
+                            <!-- Calendly inline widget end -->
+                        </div>
+                    </div>
                 </section>
             </main>
 
             <footer>
                 <p>Made with Python by {NAME}.</p>
             </footer>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </body>
         </html>
         """
@@ -234,7 +248,7 @@ def build_css():
         body {
             margin: 0;
             color: #17212b;
-            background: #f7f8f4;
+            background: #f4f6ef;
             font-family: Arial, Helvetica, sans-serif;
             line-height: 1.6;
         }
@@ -260,7 +274,7 @@ def build_css():
         }
 
         .logo {
-            color: #16353c;
+            color: #26351f;
             font-weight: 700;
             text-decoration: none;
         }
@@ -273,7 +287,7 @@ def build_css():
         }
 
         nav a {
-            color: #31424d;
+            color: #36442b;
             text-decoration: none;
         }
 
@@ -287,10 +301,10 @@ def build_css():
             background:
                 linear-gradient(
                     90deg,
-                    rgba(247, 248, 244, 0.98) 0%,
-                    rgba(247, 248, 244, 0.9) 36%,
-                    rgba(247, 248, 244, 0.45) 68%,
-                    rgba(247, 248, 244, 0.14) 100%
+                    rgba(244, 246, 239, 0.98) 0%,
+                    rgba(244, 246, 239, 0.9) 36%,
+                    rgba(244, 246, 239, 0.46) 68%,
+                    rgba(244, 246, 239, 0.16) 100%
                 ),
                 url("assets/hero-workspace.png");
             background-size: cover;
@@ -305,7 +319,7 @@ def build_css():
             align-self: end;
             padding: 24px;
             color: #ffffff;
-            background: rgba(23, 33, 43, 0.88);
+            background: rgba(38, 53, 31, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 8px;
             box-shadow: 0 24px 70px rgba(23, 33, 43, 0.22);
@@ -313,7 +327,7 @@ def build_css():
 
         .hero-panel p {
             margin-bottom: 8px;
-            color: #9ce7dc;
+            color: #d6e6b6;
             font-size: 0.82rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -327,12 +341,12 @@ def build_css():
         }
 
         .hero-panel span {
-            color: #dbe7e5;
+            color: #edf3df;
         }
 
         .eyebrow {
             margin: 0 0 12px;
-            color: #0f766e;
+            color: #596a3d;
             font-size: 0.92rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -367,7 +381,7 @@ def build_css():
 
         .intro {
             max-width: 520px;
-            color: #31424d;
+            color: #36442b;
             font-size: 1.25rem;
         }
 
@@ -392,18 +406,18 @@ def build_css():
 
         .button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 30px rgba(23, 33, 43, 0.16);
+            box-shadow: 0 14px 30px rgba(38, 53, 31, 0.18);
         }
 
         .primary {
             color: #ffffff;
-            background: #0f766e;
+            background: #596a3d;
         }
 
         .secondary {
             color: #17212b;
             background: #ffffff;
-            border: 1px solid rgba(23, 33, 43, 0.18);
+            border: 1px solid rgba(89, 106, 61, 0.28);
         }
 
         .section {
@@ -429,7 +443,7 @@ def build_css():
 
         .section-heading p {
             max-width: 680px;
-            color: #52616b;
+            color: #526049;
             font-size: 1.05rem;
         }
 
@@ -444,10 +458,10 @@ def build_css():
             display: flex;
             flex-direction: column;
             padding: 24px;
-            background: linear-gradient(180deg, #ffffff 0%, #f8fbfa 100%);
-            border: 1px solid rgba(23, 33, 43, 0.12);
+            background: linear-gradient(180deg, #ffffff 0%, #f8fbf2 100%);
+            border: 1px solid rgba(89, 106, 61, 0.18);
             border-radius: 8px;
-            box-shadow: 0 18px 50px rgba(23, 33, 43, 0.08);
+            box-shadow: 0 18px 50px rgba(38, 53, 31, 0.09);
         }
 
         .project-card p {
@@ -457,8 +471,8 @@ def build_css():
         .project-type {
             width: fit-content;
             padding: 4px 10px;
-            color: #7a321e;
-            background: #ffe3d4;
+            color: #4d331f;
+            background: #ead2a1;
             border-radius: 999px;
             font-size: 0.78rem;
             font-weight: 700;
@@ -467,18 +481,18 @@ def build_css():
 
         .project-link {
             margin-top: auto;
-            color: #0f766e;
+            color: #596a3d;
             font-weight: 700;
             text-decoration: none;
         }
 
         .photos {
-            background: #173c43;
+            background: #26351f;
             color: #ffffff;
         }
 
         .photos .eyebrow {
-            color: #9ce7dc;
+            color: #d6e6b6;
         }
 
         .photos-header {
@@ -491,14 +505,14 @@ def build_css():
 
         .photos-header p {
             max-width: 680px;
-            color: #dbe7e5;
+            color: #edf3df;
             font-size: 1.06rem;
         }
 
         .instagram-button {
             flex: 0 0 auto;
             color: #17212b;
-            background: #ffd3bf;
+            background: #e5b76c;
         }
 
         .photo-grid {
@@ -543,7 +557,7 @@ def build_css():
         }
 
         .learning .eyebrow {
-            color: #0f766e;
+            color: #596a3d;
         }
 
         .learning ul {
@@ -559,23 +573,63 @@ def build_css():
         .contact {
             color: #ffffff;
             background:
-                linear-gradient(135deg, rgba(15, 118, 110, 0.96), rgba(23, 33, 43, 0.98));
+                linear-gradient(135deg, rgba(89, 106, 61, 0.98), rgba(38, 53, 31, 0.98));
         }
 
         .contact a {
-            color: #ffe3d4;
+            color: #f1d48b;
             font-weight: 700;
             overflow-wrap: anywhere;
         }
 
-        .contact p {
+        .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+            gap: 36px;
+            align-items: start;
+        }
+
+        .contact-copy p {
             max-width: 760px;
+        }
+
+        .contact-links {
+            margin-top: 14px;
+        }
+
+        .contact-links p {
+            margin-bottom: 10px;
         }
 
         .contact-button {
             margin: 12px 0 26px;
             color: #17212b;
             background: #ffffff;
+        }
+
+        .calendly-card {
+            min-width: 0;
+            padding: 18px;
+            color: #17212b;
+            background: #f8fbf2;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 8px;
+            box-shadow: 0 24px 80px rgba(23, 33, 43, 0.26);
+        }
+
+        .calendly-card .eyebrow {
+            color: #596a3d;
+        }
+
+        .calendly-card h3 {
+            color: #26351f;
+        }
+
+        .calendly-inline-widget {
+            width: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            border-radius: 8px;
         }
 
         footer {
@@ -603,9 +657,9 @@ def build_css():
                 background:
                     linear-gradient(
                         180deg,
-                        rgba(247, 248, 244, 0.98) 0%,
-                        rgba(247, 248, 244, 0.9) 58%,
-                        rgba(247, 248, 244, 0.5) 100%
+                        rgba(244, 246, 239, 0.98) 0%,
+                        rgba(244, 246, 239, 0.9) 58%,
+                        rgba(244, 246, 239, 0.5) 100%
                     ),
                     url("assets/hero-workspace.png");
                 background-size: cover;
@@ -618,7 +672,8 @@ def build_css():
 
             .two-column,
             .learning,
-            .photo-grid {
+            .photo-grid,
+            .contact-layout {
                 grid-template-columns: 1fr;
             }
 
