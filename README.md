@@ -36,10 +36,13 @@ Open `build_site.py` and change the beginner-friendly variables near the top:
 - `NAME`
 - `TITLE`
 - `INTRO`
-- `EMAIL`
 - `GITHUB_URL`
+- `INSTAGRAM_URL`
+- `LINKEDIN_URL`
+- `CALENDLY_URL`
 - `ABOUT`
 - `PROJECTS`
 - `LEARNING_GOALS`
+- `PHOTOS`
 
 Then run `python3 build_site.py` again.
