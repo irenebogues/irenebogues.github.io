@@ -11,9 +11,15 @@ LINKEDIN_URL = "https://www.linkedin.com/in/irenebogues/"
 CALENDLY_URL = "https://calendly.com/irenebogues/meeting-with-irene"
 
 ABOUT = (
-    "I bring together operations, web projects, creative coordination, and a "
-    "growing Python practice. This site collects the work I have supported, "
-    "the projects I am learning from, and the next things I want to build."
+    "Hi, I’m Irene — Executive Assistant to the Chairman of Chelsea Piers. "
+    "Originally from Cebu City and now based in New York, I bring a global "
+    "perspective, a sharp eye for detail, and a deep love of storytelling to "
+    "everything I do. My work lives at the intersection of strategy, creativity, "
+    "and execution — building systems, organizing complex projects, solving "
+    "problems, and helping ideas become real. I’m passionate about adventure, "
+    "photography, writing with heart, and creating work that feels both useful "
+    "and deeply human. I’m drawn to the beautiful, the brave, and the practical "
+    "— the things that move people forward."
 )
 
 PROJECTS = [
