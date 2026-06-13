@@ -25,6 +25,29 @@ LINKEDIN_URL = "https://www.linkedin.com/in/irenebogues/"
 CALENDLY_URL = "https://calendly.com/irenebogues/meeting-with-irene"
 LAST_UPDATED = "2026-06-13"
 
+SOCIAL_LINKS = [
+    {
+        "name": "GitHub",
+        "url": GITHUB_URL,
+        "domain": "github.com",
+    },
+    {
+        "name": "Instagram",
+        "url": INSTAGRAM_URL,
+        "domain": "instagram.com",
+    },
+    {
+        "name": "LinkedIn",
+        "url": LINKEDIN_URL,
+        "domain": "linkedin.com",
+    },
+    {
+        "name": "Calendly",
+        "url": CALENDLY_URL,
+        "domain": "calendly.com",
+    },
+]
+
 ABOUT = (
     "Hi, I’m Irene — Executive Assistant to the Chairman of Chelsea Piers. "
     "Originally from Cebu City and now based in New York, I bring a global "
@@ -162,6 +185,21 @@ def build_photos():
     return html
 
 
+def build_social_links():
+    html = ""
+
+    for link in SOCIAL_LINKS:
+        favicon_url = f"https://www.google.com/s2/favicons?sz=64&domain={link['domain']}"
+        html += f"""
+        <a class="social-link" href="{link["url"]}" target="_blank" rel="noreferrer" aria-label="Open {link["name"]}">
+            <img src="{favicon_url}" alt="" aria-hidden="true">
+            <span>{link["name"]}</span>
+        </a>
+        """
+
+    return html
+
+
 def build_structured_data():
     data = {
         "@context": "https://schema.org",
@@ -266,17 +304,17 @@ def build_html():
                             <a class="button secondary" href="{LINKEDIN_URL}">LinkedIn</a>
                         </div>
                     </div>
-                    <aside class="hero-panel" aria-label="Highlights">
+                    <a class="hero-panel" href="{GITHUB_URL}" target="_blank" rel="noreferrer" aria-label="Open Irene's GitHub portfolio">
                         <p>Portfolio focus</p>
                         <strong>Web projects, creative systems, and practical tools.</strong>
                         <span>Currently learning Python and building a growing project library.</span>
-                    </aside>
+                    </a>
                 </section>
 
                 <section class="section two-column" id="about">
                     <div>
                         <p class="eyebrow">About</p>
-                        <h2>Organized, creative, and always building.</h2>
+                        <h2>AI Native, EA to Ultra High Net Worth Individual and always building, traveling.</h2>
                     </div>
                     <p>{ABOUT}</p>
                 </section>
@@ -293,11 +331,7 @@ def build_html():
 
                 <section class="section photos" id="photos">
                     <div class="photos-header">
-                        <div>
-                            <p class="eyebrow">Photos</p>
-                            <h2>Recent from Instagram.</h2>
-                            <p>Fresh photos, travel moments, city details, and day-to-day project life from @ireneluvsrain.</p>
-                        </div>
+                        <p class="eyebrow">Photos</p>
                         <a class="button instagram-button" href="{INSTAGRAM_URL}" target="_blank" rel="noreferrer">Open @ireneluvsrain</a>
                     </div>
                     <div class="photo-grid">
@@ -322,11 +356,8 @@ def build_html():
                             <h2>Let's plan the next step.</h2>
                             <p>Have a project, idea, or collaboration in mind? Pick a time and we can talk through what you need, what is already working, and what should happen next.</p>
                             <a class="button primary contact-button" href="{CALENDLY_URL}" target="_blank" rel="noreferrer">Schedule a meeting</a>
-                            <div class="contact-links">
-                                <p>GitHub: <a href="{GITHUB_URL}">{GITHUB_URL}</a></p>
-                                <p>Instagram: <a href="{INSTAGRAM_URL}">{INSTAGRAM_URL}</a></p>
-                                <p>LinkedIn: <a href="{LINKEDIN_URL}">{LINKEDIN_URL}</a></p>
-                                <p>Calendly: <a href="{CALENDLY_URL}">{CALENDLY_URL}</a></p>
+                            <div class="social-links" aria-label="Social links">
+                                {build_social_links()}
                             </div>
                         </div>
                         <div class="calendly-card">
@@ -433,12 +464,20 @@ def build_css():
 
         .hero-panel {
             align-self: end;
+            display: block;
             padding: 24px;
             color: #ffffff;
             background: rgba(38, 53, 31, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 8px;
             box-shadow: 0 24px 70px rgba(23, 33, 43, 0.22);
+            text-decoration: none;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .hero-panel:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 28px 76px rgba(23, 33, 43, 0.28);
         }
 
         .hero-panel p {
@@ -630,16 +669,14 @@ def build_css():
 
         .photos-header {
             display: flex;
-            align-items: end;
+            align-items: center;
             justify-content: space-between;
             gap: 28px;
             margin-bottom: 30px;
         }
 
-        .photos-header p {
-            max-width: 680px;
-            color: #edf3df;
-            font-size: 1.06rem;
+        .photos-header .eyebrow {
+            margin-bottom: 0;
         }
 
         .instagram-button {
@@ -726,12 +763,38 @@ def build_css():
             max-width: 760px;
         }
 
-        .contact-links {
-            margin-top: 14px;
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
         }
 
-        .contact-links p {
-            margin-bottom: 10px;
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            min-height: 42px;
+            padding: 9px 13px;
+            color: #17212b;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(241, 212, 139, 0.38);
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            background: #ffffff;
+            box-shadow: 0 14px 30px rgba(23, 33, 43, 0.18);
+        }
+
+        .social-link img {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
         }
 
         .contact-button {
