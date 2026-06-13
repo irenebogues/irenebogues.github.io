@@ -95,7 +95,12 @@
 <body>
     <header class="site-header">
         <a class="logo" href="#top">Irene Bogues</a>
-        <nav>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
             <a href="#education">Education</a>
@@ -342,6 +347,53 @@
     <footer>
         <p>Made with Python by Irene Bogues.</p>
     </footer>
+    <script>
+    (() => {
+        const button = document.querySelector(".menu-toggle");
+        const nav = document.querySelector("#site-nav");
+
+        if (!button || !nav) {
+            return;
+        }
+
+        const closeMenu = () => {
+            button.setAttribute("aria-expanded", "false");
+            button.setAttribute("aria-label", "Open navigation menu");
+            nav.classList.remove("is-open");
+        };
+
+        const openMenu = () => {
+            button.setAttribute("aria-expanded", "true");
+            button.setAttribute("aria-label", "Close navigation menu");
+            nav.classList.add("is-open");
+        };
+
+        button.addEventListener("click", () => {
+            const isOpen = button.getAttribute("aria-expanded") === "true";
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        nav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!nav.contains(event.target) && !button.contains(event.target)) {
+                closeMenu();
+            }
+        });
+    })();
+    </script>
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>

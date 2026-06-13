@@ -26,6 +26,57 @@ INSTAGRAM_URL = "https://www.instagram.com/ireneluvsrain/"
 LINKEDIN_URL = "https://www.linkedin.com/in/irenebogues/"
 CALENDLY_URL = "https://calendly.com/irenebogues/meeting-with-irene"
 LAST_UPDATED = "2026-06-13"
+MENU_SCRIPT = dedent(
+    """
+    <script>
+    (() => {
+        const button = document.querySelector(".menu-toggle");
+        const nav = document.querySelector("#site-nav");
+
+        if (!button || !nav) {
+            return;
+        }
+
+        const closeMenu = () => {
+            button.setAttribute("aria-expanded", "false");
+            button.setAttribute("aria-label", "Open navigation menu");
+            nav.classList.remove("is-open");
+        };
+
+        const openMenu = () => {
+            button.setAttribute("aria-expanded", "true");
+            button.setAttribute("aria-label", "Close navigation menu");
+            nav.classList.add("is-open");
+        };
+
+        button.addEventListener("click", () => {
+            const isOpen = button.getAttribute("aria-expanded") === "true";
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        nav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!nav.contains(event.target) && !button.contains(event.target)) {
+                closeMenu();
+            }
+        });
+    })();
+    </script>
+    """
+).strip()
 
 SOCIAL_LINKS = [
     {
@@ -414,7 +465,12 @@ def build_html():
         <body>
             <header class="site-header">
                 <a class="logo" href="#top">{NAME}</a>
-                <nav>
+                <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="site-nav" id="site-nav">
                     <a href="#about">About</a>
                     <a href="#experience">Experience</a>
                     <a href="#education">Education</a>
@@ -533,6 +589,7 @@ def build_html():
             <footer>
                 <p>Made with Python by {NAME}.</p>
             </footer>
+{indent(MENU_SCRIPT, " " * 12)}
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </body>
         </html>
@@ -585,16 +642,64 @@ def build_css():
             text-decoration: none;
         }
 
-        nav {
+        .site-nav {
             display: flex;
             gap: 18px;
             flex-wrap: wrap;
             font-size: 0.95rem;
         }
 
-        nav a {
+        .site-nav a {
             color: #36442b;
             text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            background: #ffffff;
+            border: 1px solid rgba(89, 106, 61, 0.28);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 2px;
+            background: #26351f;
+            border-radius: 999px;
+            transition: transform 180ms ease, opacity 180ms ease;
+        }
+
+        .menu-toggle span:nth-child(1) {
+            transform: translate(-50%, -50%) translateY(-7px);
+        }
+
+        .menu-toggle span:nth-child(2) {
+            transform: translate(-50%, -50%);
+        }
+
+        .menu-toggle span:nth-child(3) {
+            transform: translate(-50%, -50%) translateY(7px);
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+            transform: translate(-50%, -50%) rotate(-45deg);
         }
 
         .hero {
@@ -1112,10 +1217,54 @@ def build_css():
 
         @media (max-width: 760px) {
             .site-header {
-                position: static;
-                align-items: flex-start;
-                flex-direction: column;
+                position: sticky;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
                 padding: 16px 5vw;
+                gap: 12px;
+            }
+
+            .menu-toggle {
+                position: relative;
+                display: inline-flex;
+                margin-left: auto;
+            }
+
+            .site-nav {
+                width: 100%;
+                max-height: 0;
+                flex-basis: 100%;
+                flex-direction: column;
+                gap: 4px;
+                margin-top: 0;
+                padding: 0 10px;
+                overflow: hidden;
+                background: rgba(255, 255, 255, 0.96);
+                border: 1px solid rgba(89, 106, 61, 0);
+                border-radius: 8px;
+                opacity: 0;
+                visibility: hidden;
+                transition: max-height 220ms ease, opacity 180ms ease, margin 180ms ease, padding 180ms ease, border-color 180ms ease;
+            }
+
+            .site-nav.is-open {
+                max-height: 360px;
+                margin-top: 8px;
+                padding: 10px;
+                border-color: rgba(89, 106, 61, 0.18);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .site-nav a {
+                display: block;
+                padding: 10px 12px;
+                border-radius: 8px;
+            }
+
+            .site-nav a:hover {
+                background: #f4f6ef;
             }
 
             .hero {
