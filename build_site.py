@@ -5,17 +5,17 @@ from textwrap import dedent, indent
 
 NAME = "Irene Bogues"
 SITE_URL = "https://irenebogues.github.io"
-SITE_TITLE = "Irene Bogues | Executive Assistant, Creative Operator and Project Builder"
-TITLE = "Executive assistant, creative operator, project builder, and Python learner"
-INTRO = "I help ideas become organized, polished, and ready to share."
+SITE_TITLE = "Irene Bogues | Tech-forward Executive Assistant Building Practical Systems and AI Agents"
+TITLE = "Tech-forward Executive Assistant building practical systems and AI agents"
+INTRO = "I build practical systems and AI-powered workflows for clearer, smarter work."
 SEO_DESCRIPTION = (
-    "Irene Bogues is an Executive Assistant to the Chairman of Chelsea Piers, "
-    "a creative operator, project builder, and Python learner based in New York. "
-    "Explore her projects, photography, writing, and contact links."
+    "Irene Bogues is a tech-forward Executive Assistant based in New York, "
+    "building practical systems, AI-powered workflows, and creative digital "
+    "projects across executive support, automation, Python, GitHub, and AI."
 )
 SEO_KEYWORDS = (
     "Irene Bogues, Irene Zanoria, Executive Assistant, Chelsea Piers, "
-    "creative operator, project builder, Python learner, New York, Cebu City"
+    "AI agents, workflow systems, automation, Python, GitHub, New York, Cebu City"
 )
 GOOGLE_SITE_VERIFICATION = "93SpTpZzzP8xeXHlKrow4UxxrvBSD7tYQ7vtGSar7Fs"
 OG_IMAGE = f"{SITE_URL}/assets/hero-workspace.png"
@@ -48,17 +48,28 @@ SOCIAL_LINKS = [
     },
 ]
 
-ABOUT = (
-    "Hi, I’m Irene — Executive Assistant to the Chairman of Chelsea Piers. "
-    "Originally from Cebu City and now based in New York, I bring a global "
-    "perspective, a sharp eye for detail, and a deep love of storytelling to "
-    "everything I do. My work lives at the intersection of strategy, creativity, "
-    "and execution — building systems, organizing complex projects, solving "
-    "problems, and helping ideas become real. I’m passionate about adventure, "
-    "photography, writing with heart, and creating work that feels both useful "
-    "and deeply human. I’m drawn to the beautiful, the brave, and the practical "
-    "— the things that move people forward."
-)
+ABOUT_PARAGRAPHS = [
+    (
+        "Hi, I’m Irene — a tech-forward Executive Assistant based in New York. "
+        "I currently support the Chairman of Chelsea Piers and bring experience "
+        "working in high-trust environments with high-net-worth and "
+        "ultra-high-net-worth individuals."
+    ),
+    (
+        "My work has taught me how important discretion, organization, "
+        "follow-through, and clear systems are when supporting busy leaders. "
+        "That experience now shapes my growing interest in building practical "
+        "systems and AI agents that help people manage information, simplify "
+        "workflows, and make better decisions."
+    ),
+    (
+        "I’m currently learning and building at the intersection of executive "
+        "support, systems thinking, automation, Python, GitHub, and AI. This "
+        "site is a working portfolio of my progress — from creative digital "
+        "projects to practical tools designed to make work clearer, faster, "
+        "and more human."
+    ),
+]
 
 PROJECTS = [
     {
@@ -169,6 +180,15 @@ def build_goals():
     return html
 
 
+def build_about():
+    html = ""
+
+    for paragraph in ABOUT_PARAGRAPHS:
+        html += f"<p>{paragraph}</p>"
+
+    return html
+
+
 def build_photos():
     html = ""
 
@@ -193,7 +213,6 @@ def build_social_links():
         html += f"""
         <a class="social-link" href="{link["url"]}" target="_blank" rel="noreferrer" aria-label="Open {link["name"]}">
             <img src="{favicon_url}" alt="" aria-hidden="true">
-            <span>{link["name"]}</span>
         </a>
         """
 
@@ -211,7 +230,7 @@ def build_structured_data():
                 "alternateName": "Irene Zanoria",
                 "url": f"{SITE_URL}/",
                 "image": OG_IMAGE,
-                "jobTitle": "Executive Assistant to the Chairman",
+                "jobTitle": "Tech-forward Executive Assistant",
                 "worksFor": {
                     "@type": "Organization",
                     "name": "Chelsea Piers",
@@ -229,6 +248,10 @@ def build_structured_data():
                     "Executive assistance",
                     "Project coordination",
                     "Creative operations",
+                    "AI agents",
+                    "Workflow systems",
+                    "Automation",
+                    "GitHub",
                     "Photography",
                     "Writing",
                     "Python",
@@ -306,17 +329,19 @@ def build_html():
                     </div>
                     <a class="hero-panel" href="{GITHUB_URL}" target="_blank" rel="noreferrer" aria-label="Open Irene's GitHub portfolio">
                         <p>Portfolio focus</p>
-                        <strong>Web projects, creative systems, and practical tools.</strong>
-                        <span>Currently learning Python and building a growing project library.</span>
+                        <strong>AI agents, workflow systems, practical tools, and creative digital projects.</strong>
+                        <span>Currently learning Python, GitHub, automation, and AI-powered systems while building a growing project library.</span>
                     </a>
                 </section>
 
                 <section class="section two-column" id="about">
                     <div>
                         <p class="eyebrow">About</p>
-                        <h2>AI Native, EA to Ultra High Net Worth Individual and always building, traveling.</h2>
+                        <h2>Executive Assistant. Systems thinker. Emerging AI agent builder.</h2>
                     </div>
-                    <p>{ABOUT}</p>
+                    <div class="about-copy">
+                        {build_about()}
+                    </div>
                 </section>
 
                 <section class="section" id="projects">
@@ -591,6 +616,14 @@ def build_css():
             font-size: 1.08rem;
         }
 
+        .about-copy p {
+            max-width: 760px;
+        }
+
+        .about-copy p + p {
+            margin-top: 16px;
+        }
+
         .section-heading {
             max-width: 720px;
             margin-bottom: 28px;
@@ -766,6 +799,7 @@ def build_css():
         .social-links {
             display: flex;
             flex-wrap: wrap;
+            align-items: center;
             gap: 12px;
             margin-top: 18px;
         }
@@ -773,9 +807,10 @@ def build_css():
         .social-link {
             display: inline-flex;
             align-items: center;
-            gap: 9px;
-            min-height: 42px;
-            padding: 9px 13px;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            padding: 0;
             color: #17212b;
             background: rgba(255, 255, 255, 0.92);
             border: 1px solid rgba(241, 212, 139, 0.38);
@@ -792,8 +827,9 @@ def build_css():
         }
 
         .social-link img {
-            width: 20px;
-            height: 20px;
+            display: block;
+            width: 24px;
+            height: 24px;
             border-radius: 4px;
         }
 

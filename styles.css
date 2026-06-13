@@ -205,6 +205,14 @@ h3 {
     font-size: 1.08rem;
 }
 
+.about-copy p {
+    max-width: 760px;
+}
+
+.about-copy p + p {
+    margin-top: 16px;
+}
+
 .section-heading {
     max-width: 720px;
     margin-bottom: 28px;
@@ -380,6 +388,7 @@ h3 {
 .social-links {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 12px;
     margin-top: 18px;
 }
@@ -387,9 +396,10 @@ h3 {
 .social-link {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    min-height: 42px;
-    padding: 9px 13px;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
     color: #17212b;
     background: rgba(255, 255, 255, 0.92);
     border: 1px solid rgba(241, 212, 139, 0.38);
@@ -406,8 +416,9 @@ h3 {
 }
 
 .social-link img {
-    width: 20px;
-    height: 20px;
+    display: block;
+    width: 24px;
+    height: 24px;
     border-radius: 4px;
 }
 
