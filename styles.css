@@ -213,6 +213,58 @@ h3 {
     margin-top: 16px;
 }
 
+.experience {
+    color: #ffffff;
+    background: #26351f;
+}
+
+.experience .eyebrow {
+    color: #d6e6b6;
+}
+
+.experience .section-heading p {
+    color: #edf3df;
+}
+
+.experience-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.experience-card {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
+}
+
+.experience-card h3 {
+    color: #ffffff;
+    font-size: 1.25rem;
+}
+
+.experience-card p {
+    color: #edf3df;
+    font-size: 1.03rem;
+}
+
+.experience-card p:last-child {
+    margin-bottom: 0;
+}
+
+.experience-role {
+    color: #f1d48b;
+    font-weight: 700;
+}
+
+.experience-link {
+    margin-top: 24px;
+    color: #17212b;
+    background: #f1d48b;
+}
+
 .education {
     background: #f4f6ef;
 }
@@ -345,8 +397,16 @@ h3 {
 
 .instagram-button {
     flex: 0 0 auto;
+    gap: 10px;
     color: #17212b;
     background: #e5b76c;
+}
+
+.instagram-button img {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
 }
 
 .photo-grid {
@@ -534,6 +594,7 @@ footer p {
     }
 
     .two-column,
+    .experience-list,
     .learning,
     .project-grid,
     .photo-grid,

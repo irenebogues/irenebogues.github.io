@@ -16,7 +16,8 @@ SEO_DESCRIPTION = (
 SEO_KEYWORDS = (
     "Irene Bogues, Irene Zanoria, Executive Assistant, Chelsea Piers, "
     "AI agents, workflow systems, automation, Python, GitHub, Columbia Engineering, "
-    "University of San Carlos, New York, Cebu City"
+    "University of San Carlos, operations, recruiting, talent acquisition, Infosys, "
+    "Tadhana LLC, New York, Cebu City"
 )
 GOOGLE_SITE_VERIFICATION = "93SpTpZzzP8xeXHlKrow4UxxrvBSD7tYQ7vtGSar7Fs"
 OG_IMAGE = f"{SITE_URL}/assets/hero-workspace.png"
@@ -70,6 +71,41 @@ ABOUT_PARAGRAPHS = [
         "projects to practical tools designed to make work clearer, faster, "
         "and more human."
     ),
+]
+
+EXPERIENCE_INTRO = (
+    "My background sits at the intersection of executive support, operations, "
+    "recruiting, project coordination, and digital systems."
+)
+
+EXPERIENCE = [
+    {
+        "company": "Chelsea Piers",
+        "role": "Executive Assistant to the Chairman",
+        "description": (
+            "Support senior leadership in a high-trust, detail-sensitive "
+            "environment requiring discretion, organization, anticipation, "
+            "and strong follow-through."
+        ),
+    },
+    {
+        "company": "Tadhana LLC",
+        "role": "Partner",
+        "description": (
+            "Helped support business growth, hospitality operations, "
+            "recruitment strategy, and organizational development for an "
+            "upscale restaurant environment."
+        ),
+    },
+    {
+        "company": "Infosys",
+        "role": "Associate Lead, Talent Acquisition",
+        "description": (
+            "Managed day-to-day candidate sourcing, talent generation, "
+            "recruiting operations, and hiring coordination while working "
+            "across business requirements, SharePoint, and large-scale systems."
+        ),
+    },
 ]
 
 PROJECTS = [
@@ -206,6 +242,21 @@ def build_about():
     return html
 
 
+def build_experience():
+    html = ""
+
+    for item in EXPERIENCE:
+        html += f"""
+        <article class="experience-card">
+            <h3>{item["company"]}</h3>
+            <p class="experience-role">{item["role"]}</p>
+            <p>{item["description"]}</p>
+        </article>
+        """
+
+    return html
+
+
 def build_education():
     html = ""
 
@@ -303,6 +354,10 @@ def build_structured_data():
                     "AI agents",
                     "Workflow systems",
                     "Automation",
+                    "Operations",
+                    "Recruiting",
+                    "Talent acquisition",
+                    "Digital systems",
                     "GitHub",
                     "Photography",
                     "Writing",
@@ -361,6 +416,7 @@ def build_html():
                 <a class="logo" href="#top">{NAME}</a>
                 <nav>
                     <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
                     <a href="#education">Education</a>
                     <a href="#projects">Projects</a>
                     <a href="#photos">Photos</a>
@@ -397,6 +453,18 @@ def build_html():
                     </div>
                 </section>
 
+                <section class="section experience" id="experience">
+                    <div class="section-heading">
+                        <p class="eyebrow">Experience</p>
+                        <h2>Experience That Shapes How I Build</h2>
+                        <p>{EXPERIENCE_INTRO}</p>
+                    </div>
+                    <div class="experience-list">
+                        {build_experience()}
+                    </div>
+                    <a class="button experience-link" href="{LINKEDIN_URL}" target="_blank" rel="noreferrer">Read more on LinkedIn</a>
+                </section>
+
                 <section class="section education" id="education">
                     <div class="section-heading">
                         <p class="eyebrow">Education</p>
@@ -420,7 +488,10 @@ def build_html():
                 <section class="section photos" id="photos">
                     <div class="photos-header">
                         <p class="eyebrow">Photos</p>
-                        <a class="button instagram-button" href="{INSTAGRAM_URL}" target="_blank" rel="noreferrer">Open @ireneluvsrain</a>
+                        <a class="button instagram-button" href="{INSTAGRAM_URL}" target="_blank" rel="noreferrer" aria-label="Follow Irene on Instagram">
+                            <span>Follow</span>
+                            <img src="https://www.google.com/s2/favicons?sz=64&domain=instagram.com" alt="" aria-hidden="true">
+                        </a>
                     </div>
                     <div class="photo-grid">
                         {build_photos()}
@@ -687,6 +758,58 @@ def build_css():
             margin-top: 16px;
         }
 
+        .experience {
+            color: #ffffff;
+            background: #26351f;
+        }
+
+        .experience .eyebrow {
+            color: #d6e6b6;
+        }
+
+        .experience .section-heading p {
+            color: #edf3df;
+        }
+
+        .experience-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .experience-card {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 8px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
+        }
+
+        .experience-card h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+        }
+
+        .experience-card p {
+            color: #edf3df;
+            font-size: 1.03rem;
+        }
+
+        .experience-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-role {
+            color: #f1d48b;
+            font-weight: 700;
+        }
+
+        .experience-link {
+            margin-top: 24px;
+            color: #17212b;
+            background: #f1d48b;
+        }
+
         .education {
             background: #f4f6ef;
         }
@@ -819,8 +942,16 @@ def build_css():
 
         .instagram-button {
             flex: 0 0 auto;
+            gap: 10px;
             color: #17212b;
             background: #e5b76c;
+        }
+
+        .instagram-button img {
+            display: block;
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
         }
 
         .photo-grid {
@@ -1008,6 +1139,7 @@ def build_css():
             }
 
             .two-column,
+            .experience-list,
             .learning,
             .project-grid,
             .photo-grid,
