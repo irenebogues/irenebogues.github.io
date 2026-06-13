@@ -17,6 +17,7 @@ SEO_KEYWORDS = (
     "Irene Bogues, Irene Zanoria, Executive Assistant, Chelsea Piers, "
     "creative operator, project builder, Python learner, New York, Cebu City"
 )
+GOOGLE_SITE_VERIFICATION = "93SpTpZzzP8xeXHlKrow4UxxrvBSD7tYQ7vtGSar7Fs"
 OG_IMAGE = f"{SITE_URL}/assets/hero-workspace.png"
 GITHUB_URL = "https://github.com/irenebogues"
 INSTAGRAM_URL = "https://www.instagram.com/ireneluvsrain/"
@@ -225,6 +226,7 @@ def build_html():
             <meta name="keywords" content="{SEO_KEYWORDS}">
             <meta name="author" content="{NAME}">
             <meta name="robots" content="index, follow">
+            <meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">
             <link rel="canonical" href="{SITE_URL}/">
             <meta property="og:type" content="website">
             <meta property="og:title" content="{SITE_TITLE}">
