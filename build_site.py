@@ -1,14 +1,28 @@
 from pathlib import Path
-from textwrap import dedent
+import json
+from textwrap import dedent, indent
 
 
 NAME = "Irene Bogues"
-TITLE = "Creative operator, project builder, and Python learner"
+SITE_URL = "https://irenebogues.github.io"
+SITE_TITLE = "Irene Bogues | Executive Assistant, Creative Operator and Project Builder"
+TITLE = "Executive assistant, creative operator, project builder, and Python learner"
 INTRO = "I help ideas become organized, polished, and ready to share."
+SEO_DESCRIPTION = (
+    "Irene Bogues is an Executive Assistant to the Chairman of Chelsea Piers, "
+    "a creative operator, project builder, and Python learner based in New York. "
+    "Explore her projects, photography, writing, and contact links."
+)
+SEO_KEYWORDS = (
+    "Irene Bogues, Irene Zanoria, Executive Assistant, Chelsea Piers, "
+    "creative operator, project builder, Python learner, New York, Cebu City"
+)
+OG_IMAGE = f"{SITE_URL}/assets/hero-workspace.png"
 GITHUB_URL = "https://github.com/irenebogues"
 INSTAGRAM_URL = "https://www.instagram.com/ireneluvsrain/"
 LINKEDIN_URL = "https://www.linkedin.com/in/irenebogues/"
 CALENDLY_URL = "https://calendly.com/irenebogues/meeting-with-irene"
+LAST_UPDATED = "2026-06-13"
 
 ABOUT = (
     "Hi, I’m Irene — Executive Assistant to the Chairman of Chelsea Piers. "
@@ -147,6 +161,57 @@ def build_photos():
     return html
 
 
+def build_structured_data():
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": f"{SITE_URL}/#person",
+                "name": NAME,
+                "alternateName": "Irene Zanoria",
+                "url": f"{SITE_URL}/",
+                "image": OG_IMAGE,
+                "jobTitle": "Executive Assistant to the Chairman",
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "Chelsea Piers",
+                },
+                "homeLocation": {
+                    "@type": "Place",
+                    "name": "New York, NY",
+                },
+                "birthPlace": {
+                    "@type": "Place",
+                    "name": "Cebu City, Philippines",
+                },
+                "sameAs": [GITHUB_URL, INSTAGRAM_URL, LINKEDIN_URL],
+                "knowsAbout": [
+                    "Executive assistance",
+                    "Project coordination",
+                    "Creative operations",
+                    "Photography",
+                    "Writing",
+                    "Python",
+                ],
+                "description": SEO_DESCRIPTION,
+            },
+            {
+                "@type": "WebSite",
+                "@id": f"{SITE_URL}/#website",
+                "url": f"{SITE_URL}/",
+                "name": NAME,
+                "description": SEO_DESCRIPTION,
+                "publisher": {
+                    "@id": f"{SITE_URL}/#person",
+                },
+            },
+        ],
+    }
+
+    return indent(json.dumps(data, ensure_ascii=False, indent=4), " " * 12)
+
+
 def build_html():
     return dedent(
         f"""
@@ -155,8 +220,26 @@ def build_html():
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>{NAME} | Personal Website</title>
+            <title>{SITE_TITLE}</title>
+            <meta name="description" content="{SEO_DESCRIPTION}">
+            <meta name="keywords" content="{SEO_KEYWORDS}">
+            <meta name="author" content="{NAME}">
+            <meta name="robots" content="index, follow">
+            <link rel="canonical" href="{SITE_URL}/">
+            <meta property="og:type" content="website">
+            <meta property="og:title" content="{SITE_TITLE}">
+            <meta property="og:description" content="{SEO_DESCRIPTION}">
+            <meta property="og:url" content="{SITE_URL}/">
+            <meta property="og:site_name" content="{NAME}">
+            <meta property="og:image" content="{OG_IMAGE}">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="{SITE_TITLE}">
+            <meta name="twitter:description" content="{SEO_DESCRIPTION}">
+            <meta name="twitter:image" content="{OG_IMAGE}">
             <link rel="stylesheet" href="styles.css">
+            <script type="application/ld+json">
+{build_structured_data()}
+            </script>
         </head>
         <body>
             <header class="site-header">
@@ -763,11 +846,40 @@ def build_css():
     ).strip()
 
 
+def build_robots_txt():
+    return dedent(
+        f"""
+        User-agent: *
+        Allow: /
+
+        Sitemap: {SITE_URL}/sitemap.xml
+        """
+    ).strip()
+
+
+def build_sitemap_xml():
+    return dedent(
+        f"""\
+        <?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url>
+                <loc>{SITE_URL}/</loc>
+                <lastmod>{LAST_UPDATED}</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>1.0</priority>
+            </url>
+        </urlset>
+        """
+    ).strip()
+
+
 def main():
     project_folder = Path(__file__).parent
 
     (project_folder / "index.html").write_text(build_html() + "\n", encoding="utf-8")
     (project_folder / "styles.css").write_text(build_css() + "\n", encoding="utf-8")
+    (project_folder / "robots.txt").write_text(build_robots_txt() + "\n", encoding="utf-8")
+    (project_folder / "sitemap.xml").write_text(build_sitemap_xml() + "\n", encoding="utf-8")
 
     print("Website built.")
     print("Open index.html in your browser to see it.")

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://irenebogues.github.io/sitemap.xml
