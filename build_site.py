@@ -15,7 +15,8 @@ SEO_DESCRIPTION = (
 )
 SEO_KEYWORDS = (
     "Irene Bogues, Irene Zanoria, Executive Assistant, Chelsea Piers, "
-    "AI agents, workflow systems, automation, Python, GitHub, New York, Cebu City"
+    "AI agents, workflow systems, automation, Python, GitHub, Columbia Engineering, "
+    "University of San Carlos, New York, Cebu City"
 )
 GOOGLE_SITE_VERIFICATION = "93SpTpZzzP8xeXHlKrow4UxxrvBSD7tYQ7vtGSar7Fs"
 OG_IMAGE = f"{SITE_URL}/assets/hero-workspace.png"
@@ -110,9 +111,30 @@ PROJECTS = [
 ]
 
 LEARNING_GOALS = [
-    "Write clearer Python code",
-    "Use Git and GitHub with confidence",
-    "Build small projects that grow over time",
+    "Writing clean, clear Python code",
+    "Using Git and GitHub with confidence",
+    "Building small projects that grow into bigger ones",
+]
+
+EDUCATION = [
+    {
+        "school": "Columbia Engineering",
+        "program": "Executive Education Program, Computer Software Engineering",
+        "dates": "2018 – 2019",
+        "details": (
+            "Intensive Full-Stack Web Development Program focused on React, "
+            "Web Scraping, Node.js, JavaScript, jQuery, NPM, Bootstrap, Git, "
+            "Command Line, Database Theory, MongoDB, and MySQL."
+        ),
+    },
+    {
+        "school": "University of San Carlos",
+        "program": "Master’s, History",
+    },
+    {
+        "school": "University of San Carlos",
+        "program": "Bachelor of Arts, History",
+    },
 ]
 
 PHOTOS = [
@@ -172,12 +194,7 @@ def build_projects():
 
 
 def build_goals():
-    html = ""
-
-    for goal in LEARNING_GOALS:
-        html += f"<li>{goal}</li>"
-
-    return html
+    return "".join(f"<li>{goal}</li>" for goal in LEARNING_GOALS)
 
 
 def build_about():
@@ -185,6 +202,31 @@ def build_about():
 
     for paragraph in ABOUT_PARAGRAPHS:
         html += f"<p>{paragraph}</p>"
+
+    return html
+
+
+def build_education():
+    html = ""
+
+    for item in EDUCATION:
+        details = [
+            f"<h3>{item['school']}</h3>",
+            f"<p><strong>{item['program']}</strong></p>",
+        ]
+
+        if item.get("dates"):
+            details.append(f'<p class="education-date">{item["dates"]}</p>')
+
+        if item.get("details"):
+            details.append(f'<p class="education-detail">{item["details"]}</p>')
+
+        content = indent("\n".join(details), " " * 12)
+        html += f"""
+        <div class="education-item">
+{content}
+        </div>
+        """
 
     return html
 
@@ -235,6 +277,16 @@ def build_structured_data():
                     "@type": "Organization",
                     "name": "Chelsea Piers",
                 },
+                "alumniOf": [
+                    {
+                        "@type": "CollegeOrUniversity",
+                        "name": "Columbia Engineering",
+                    },
+                    {
+                        "@type": "CollegeOrUniversity",
+                        "name": "University of San Carlos",
+                    },
+                ],
                 "homeLocation": {
                     "@type": "Place",
                     "name": "New York, NY",
@@ -309,6 +361,7 @@ def build_html():
                 <a class="logo" href="#top">{NAME}</a>
                 <nav>
                     <a href="#about">About</a>
+                    <a href="#education">Education</a>
                     <a href="#projects">Projects</a>
                     <a href="#photos">Photos</a>
                     <a href="#contact">Contact</a>
@@ -344,6 +397,16 @@ def build_html():
                     </div>
                 </section>
 
+                <section class="section education" id="education">
+                    <div class="section-heading">
+                        <p class="eyebrow">Education</p>
+                        <h2>Education</h2>
+                    </div>
+                    <div class="education-list">
+                        {build_education()}
+                    </div>
+                </section>
+
                 <section class="section" id="projects">
                     <div class="section-heading">
                         <p class="eyebrow">Projects</p>
@@ -367,7 +430,7 @@ def build_html():
                 <section class="section learning">
                     <div>
                         <p class="eyebrow">Learning Goals</p>
-                        <h2>What I want to get better at</h2>
+                        <h2>I want to get sharper at:</h2>
                     </div>
                     <ul>
                         {build_goals()}
@@ -622,6 +685,48 @@ def build_css():
 
         .about-copy p + p {
             margin-top: 16px;
+        }
+
+        .education {
+            background: #f4f6ef;
+        }
+
+        .education-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .education-item {
+            padding: 24px;
+            background: #ffffff;
+            border: 1px solid rgba(89, 106, 61, 0.18);
+            border-radius: 8px;
+            box-shadow: 0 18px 45px rgba(38, 53, 31, 0.08);
+        }
+
+        .education-item h3 {
+            color: #26351f;
+            font-size: 1.35rem;
+        }
+
+        .education-item p {
+            max-width: 920px;
+            margin-bottom: 8px;
+            color: #2f3c2a;
+            font-size: 1.05rem;
+        }
+
+        .education-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        .education-date {
+            color: #596a3d;
+            font-weight: 700;
+        }
+
+        .education-detail {
+            color: #36442b;
         }
 
         .section-heading {
