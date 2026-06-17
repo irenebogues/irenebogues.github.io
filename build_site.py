@@ -15,9 +15,9 @@ SEO_DESCRIPTION = (
 )
 SEO_KEYWORDS = (
     "Irene Bogues, Irene Zanoria, Executive Assistant, Chelsea Piers, "
-    "AI agents, workflow systems, automation, Python, GitHub, Columbia Engineering, "
-    "University of San Carlos, operations, recruiting, talent acquisition, Infosys, "
-    "Tadhana LLC, New York, Cebu City"
+    "AI agents, workflow systems, automation, Python, JavaScript, TypeScript, "
+    "SQL, GitHub, Columbia Engineering, University of San Carlos, operations, "
+    "recruiting, talent acquisition, Infosys, Tadhana LLC, New York, Cebu City"
 )
 GOOGLE_SITE_VERIFICATION = "93SpTpZzzP8xeXHlKrow4UxxrvBSD7tYQ7vtGSar7Fs"
 OG_IMAGE = f"{SITE_URL}/assets/hero-workspace.png"
@@ -103,24 +103,17 @@ SOCIAL_LINKS = [
 
 ABOUT_PARAGRAPHS = [
     (
-        "Hi, I’m Irene — a tech-forward Executive Assistant based in New York. "
+        "Hi, I’m Irene, a tech-forward Executive Assistant based in New York. "
         "I currently support the Chairman of Chelsea Piers and bring experience "
         "working in high-trust environments with high-net-worth and "
         "ultra-high-net-worth individuals."
     ),
     (
-        "My work has taught me how important discretion, organization, "
-        "follow-through, and clear systems are when supporting busy leaders. "
-        "That experience now shapes my growing interest in building practical "
+        "My work has taught me the importance of discretion, organization, "
+        "follow-through, and clear systems when supporting busy leaders. That "
+        "experience now shapes my growing interest in building practical "
         "systems and AI agents that help people manage information, simplify "
         "workflows, and make better decisions."
-    ),
-    (
-        "I’m currently learning and building at the intersection of executive "
-        "support, systems thinking, automation, Python, GitHub, and AI. This "
-        "site is a working portfolio of my progress — from creative digital "
-        "projects to practical tools designed to make work clearer, faster, "
-        "and more human."
     ),
 ]
 
@@ -198,9 +191,9 @@ PROJECTS = [
 ]
 
 LEARNING_GOALS = [
-    "Writing clean, clear Python code",
-    "Using Git and GitHub with confidence",
-    "Building small projects that grow into bigger ones",
+    "Learning Python for AI agents and automation",
+    "Using JavaScript and TypeScript to build websites, chat tools, and dashboards",
+    "Understanding SQL so I can work with business data",
 ]
 
 EDUCATION = [
@@ -410,6 +403,9 @@ def build_structured_data():
                     "Talent acquisition",
                     "Digital systems",
                     "GitHub",
+                    "JavaScript",
+                    "TypeScript",
+                    "SQL",
                     "Photography",
                     "Writing",
                     "Python",
@@ -495,7 +491,7 @@ def build_html():
                     <a class="hero-panel" href="{GITHUB_URL}" target="_blank" rel="noreferrer" aria-label="Open Irene's GitHub portfolio">
                         <p>Portfolio focus</p>
                         <strong>AI agents, workflow systems, practical tools, and creative digital projects.</strong>
-                        <span>Currently learning Python, GitHub, automation, and AI-powered systems while building a growing project library.</span>
+                        <span>Currently learning Python, JavaScript, TypeScript, SQL, automation, and AI-powered systems while building a growing project library.</span>
                     </a>
                 </section>
 
