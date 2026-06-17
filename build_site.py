@@ -25,7 +25,7 @@ GITHUB_URL = "https://github.com/irenebogues"
 INSTAGRAM_URL = "https://www.instagram.com/ireneluvsrain/"
 LINKEDIN_URL = "https://www.linkedin.com/in/irenebogues/"
 CALENDLY_URL = "https://calendly.com/irenebogues/meeting-with-irene"
-LAST_UPDATED = "2026-06-13"
+LAST_UPDATED = "2026-06-17"
 MENU_SCRIPT = dedent(
     """
     <script>
