@@ -104,7 +104,7 @@ SOCIAL_LINKS = [
 ABOUT_PARAGRAPHS = [
     (
         "Hi, I’m Irene, a tech-forward Executive Assistant based in New York. "
-        "I currently support the Chairman of Chelsea Piers and bring experience "
+        "I currently support the Founder and Chairman of Chelsea Piers and bring experience "
         "working in high-trust environments with high-net-worth and "
         "ultra-high-net-worth individuals."
     ),
@@ -125,7 +125,7 @@ EXPERIENCE_INTRO = (
 EXPERIENCE = [
     {
         "company": "Chelsea Piers",
-        "role": "Executive Assistant to the Chairman",
+        "role": "Executive Assistant to the Founder and Chairman",
         "description": (
             "Support senior leadership in a high-trust, detail-sensitive "
             "environment requiring discretion, organization, anticipation, "
